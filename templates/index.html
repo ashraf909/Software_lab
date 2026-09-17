@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Directory</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+  <h1>User Feed</h1>
+
+  <div class="users-grid">
+    {% for user in users %}
+      <div class="card">
+        <h3>{{ user.name }}</h3>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+
+        <form action="{{ url_for('remove_user', user_id=user.id) }}" method="POST">
+          <button type="submit">Remove User</button>
+        </form>
+      </div>
+    {% else %}
+      <p>No users are available right now.</p>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
